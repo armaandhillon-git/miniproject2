@@ -1,0 +1,175 @@
+<% 
+function show_error(label){
+    if(label in errors){
+        return errors[label];
+    }
+    return;
+}
+%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg top-nav" id="top_nav">
+            <a class="navbar-brand" href="./">Mini Project</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="fa fa-bars navbar-toggler-icon text-white"></span></button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+
+
+        <h1 class="text-center">Welcome to login!</h1>
+
+        <div class="container text-center">
+            <div class="form_wrapper">
+
+                <form action="/" method="POST" onsubmit="validate_formm(event)">
+                    <div class="form-group">
+                        <label>Enter Username</label>
+                        <input id="username" onkeyup="validate_username()" oninput="validate_username()" name="username"
+                            value="<%= username  %>" class="form-control" placeholder="username">
+                        <span id="usernameError" class="formError"><%= show_error('username') %></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Password</label>
+                        <input id="password" onkeyup="validate_password()" oninput="validate_password()" name="password"
+                            type="password" class="form-control" placeholder="password">
+                        <span id="passwordError" class="formError"><%= show_error('password') %></span>
+                    </div>
+
+                    <div class="py-3">
+                        <label>Size:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input <% if(size == 'Small'){%>checked<% } %>  class="form-check-input" type="radio" name="size" id="inlineRadio1" value="Small" />
+                            <label class="form-check-label" for="inlineRadio1">Small</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input <% if(size == 'Medium'){%>checked<% } %>  class="form-check-input" type="radio" name="size" id="inlineRadio2" value="Medium" />
+                            <label class="form-check-label" for="inlineRadio2">Medium</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input <% if(size == 'Large'){%>checked<% } %> class="form-check-input" type="radio" name="size" id="inlineRadio3" value="Large" />
+                            <label class="form-check-label" for="inlineRadio3">Large</label>
+                        </div>
+                        <br>
+                        <span id="sizeError" class="formError"><%= show_error('size') %></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <select id="age" name="age" class="form-control">
+                            <option value=""></option>
+                            <option <% if(age == '<10'){%>selected<% } %> value="<10">< 10 years</option>
+                            <option <% if(age == '10-20'){%>selected<% } %> value="10-20">10 - 20 years</option>
+                            <option <% if(age == '20-30'){%>selected<% } %> value="20-30">20 - 30 years</option>
+                            <option <% if(age == '30-40'){%>selected<% } %> value="30-40">30 - 40 years</option>
+                            <option <% if(age == '40-50'){%>selected<% } %> value="40-50">40 - 50 years</option>
+                            <option <% if(age == '50-60'){%>selected<% } %> value="50-60">50 - 60 years</option>
+                            <option <% if(age == '60-70'){%>selected<% } %> value="60-70">60 - 70 years</option>
+                            <option <% if(age == '70-80'){%>selected<% } %> value="70-80">70 - 80 years</option>
+                            <option <% if(age == '80-90'){%>selected<% } %> value="80-90">80 - 90 years</option>
+                            <option <% if(age == '90-100'){%>selected<% } %> value="90-100">90 - 100 years</option>
+                            <option <% if(age == '>100'){%>selected<% } %> value=">100"> > 100 years</option>
+                        </select>
+                        <span id="ageError" class="formError"><%= show_error('age') %></span>
+                    </div>
+
+                    <div  id="formError" class="alert alert-danger alert-dismissible fade show" style="<% if(!('form' in errors)){%>display: none;<% } %>">
+                        <%- show_error('form') %>
+                    </div>
+
+                    <div class="text-center py-3">
+                        <button class="btn btn-lg">Login</butto>
+                    </div>
+
+                    Not registered? <a href="#">Create an account</a>
+
+
+                </form>
+            </div>
+        </div>
+
+
+        <div class="container disclaimer py-5">
+            <h3>Disclaimers</h3>
+            <ul>
+                <li class="main">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Morbi laoreet lacus sit amet maximus interdum.</li>
+
+                <li class="main">Duis metus velit, interdum sed quam quis, laoreet condimentum dui.
+                    Vestibulum quis enim ullamcorper, ullamcorper ligula id, finibus sem.</li>
+
+                <li class="main">
+                    Donec condimentum consectetur eros,
+                    fringilla condimentum sapien mollis sit amet.</li>
+
+                <li class="main">Nam ipsum magna, dictum pellentesque elementum et, tempus luctus sapien.</li>
+
+                <li class="main"> In hac habitasse platea dictumst. In blandit turpis at orci viverra posuere.
+                    Maecenas vel arcu at mi facilisis tincidunt quis ut metus. Proin commodo sem eu lorem mattis,
+                    eget mollis mi efficitur.</li>
+
+            </ul>
+
+
+        </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" crossorigin="anonymous""></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
